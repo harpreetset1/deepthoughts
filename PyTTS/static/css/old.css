@@ -1,0 +1,323 @@
+body, html
+{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: #FFF;
+  font-size: 16px;
+  background-color: #04061a; /*midnight blue*/
+  font-family: 'Lato', sans-serif;
+}
+
+body
+{
+  overflow: hidden;
+  min-height: 100%;
+}
+
+a
+{
+  text-decoration: none;
+  color: #6666AA;
+}
+
+.webgl-container
+{
+  position: absolute;
+}
+
+.page-container
+{
+  display: flex;
+  height: 100%;
+}
+
+.page
+{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page.inactive
+{
+  display: none;
+}
+
+.page.activating
+{
+  opacity: 0;
+  display: flex;
+  animation: fadeIn 1s;
+  animation-fill-mode: forwards;
+}
+
+.page.deactivating
+{
+  opacity: 1;
+  display: flex;
+  animation: fadeOut 1s;
+  animation-fill-mode: forwards;
+}
+
+.page.loading.active
+{
+  animation: pulseOpacity 0.5s infinite;
+}
+
+.title
+{
+  font-size: 4em;
+}
+
+.subtitle
+{
+  font-size: 1.5em;
+}
+
+.small
+{
+  font-size: 16px;
+  margin-top: 1em;
+}
+
+.attract.page
+{
+  flex-direction: column;
+}
+
+.attract.page.active .title
+{
+  animation: pulseScale 1s infinite;
+}
+
+
+.attract.page.deactivating
+{
+  animation-delay: 1s;
+}
+
+.attract.page.deactivating .title
+{
+  transition: all 1s;
+  transition-timing-function: ease-in-out;
+}
+
+.introduction.page
+{
+  align-items: stretch;
+}
+
+.introduction.page.deactivating
+{
+  animation-delay: 1s;
+}
+
+.subpage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: absolute;
+  height: 100%;
+}
+
+.subpage .title {
+  margin-top: 0.5em;
+  font-size: 4em;
+}
+
+.introductionSlides
+{
+  display: flex;
+  justify-content: center;
+}
+
+.introductionSlides.speech1 .subpage.speech1 .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides.speech2 .subpage.speech2 .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides.speech3 .subpage.speech3 .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides.speech4 .subpage.speech4 .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides.speechAccepted .subpage.speechAccepted .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides.swipe1 .subpage.swipe1 .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides.swipe2 .subpage.swipe2 .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides.swipe3 .subpage.swipe3 .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides.questions1 .subpage.questions1 .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides.questions2 .subpage.questions2 .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides.questions3 .subpage.questions3 .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides.questions4 .subpage.questions4 .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides.questions5 .subpage.questions5 .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides.questions6 .subpage.questions6 .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides.deactivating .subpage.questions6 .paragraph {
+  opacity: 1;
+}
+
+.introductionSlides .subpage.speech1 .title {
+  visibility: visible;
+}
+
+.introductionSlides .subpage .title {
+  visibility: hidden;
+}
+
+.subpage .paragraph {
+  display: flex;
+  transition: all 1s;
+  opacity: 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  margin-top: -4em;
+  font-size: 2em;
+  max-width: 600px;
+}
+
+.profileBuilder.page
+{
+  align-items: stretch;
+}
+
+.profileBuilder .subpage.question .title {
+  visibility: visible;
+}
+
+.profileBuilder .subpage .title {
+  visibility: hidden;
+}
+
+.subpage.active .paragraph {
+  opacity: 1;
+}
+
+.profileBuilder .subpage.product .product {
+  width: 200px;
+  height: 200px;
+  background-color: grey;
+  margin-top: 1em;
+}
+
+.profileBuilder .subpage.imageQuestion .image {
+  width: 200px;
+  height: 200px;
+  background-color: grey;
+  margin-top: 1em;
+}
+
+.takehome.page
+{
+  align-items: stretch;
+}
+
+.takehomeSlides
+{
+  display: flex;
+  justify-content: center;
+}
+
+.takehomeSlides.url .subpage.url .paragraph {
+  opacity: 1;
+}
+
+.takehomeSlides.phone .subpage.phone .paragraph {
+  opacity: 1;
+}
+
+.takehomeSlides.thanks .subpage.thanks .paragraph {
+  opacity: 1;
+}
+
+.takehome .subpage.url .title {
+  visibility: visible;
+}
+
+.takehome .subpage .title {
+  visibility: hidden;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulseOpacity {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulseScale {
+  0% {
+    transform: scale(1)
+  }
+  10% {
+    transform: scale(1.1)
+  }
+  100% {
+    transform: scale(1)
+  }
+}
+
+
