@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="info-container">
+      <div class="info-item booth-id"></div>
+      <div class="info-item min-threshold"></div>
+      <div class="info-item max-threshold"></div>
+      <div class="info-item osc-lighting-port"></div>
+    </div>
+    <div class="webgl-container">
+    </div>
+    <div class="page-container">
+      <div class="logo"></div>
+      <div class="logo-underline"></div>
+      <div class="app-icon"></div>
+      <div class="app-icon-underline"></div>
+      <div class="title-underline"></div>
+    </div>
+  </body>
+    <script>
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+
+      window.env = (getParameterByName('env')) ? getParameterByName('env') : false;
+      window.timeout = (getParameterByName('timeout')) ? 1000 * 60 * getParameterByName('timeout') : 1000 * 60;
+    </script>
+  <script type="text/javascript" data-main="js/main.js" src="js/libs/require.js"></script>
+</html>
