@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "aibot-fc4fc"
+  },
+  "targets": {
+    "aibot-fc4fc": {
+      "hosting": {
+        "deepthoughtnetworks": [
+          "deepthoughtnetworks"
+        ]
+      }
+    }
+  }
+}

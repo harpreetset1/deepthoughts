@@ -1,0 +1,12 @@
+dispatch:
+  # Route custom domain to frontend service
+  - url: "docsummarizer.deepthoughtnetworks.com/*"
+    service: frontend
+
+  # Route all traffic to the default service (backend)
+  - url: "aibot-fc4fc.wn.r.appspot.com/*"
+    service: default
+
+  # Route frontend traffic to the frontend service
+  - url: "frontend-dot-aibot-fc4fc.wn.r.appspot.com/*"
+    service: frontend
