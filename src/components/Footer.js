@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-1">
             <Link to="/" className="inline-flex items-center mb-4">
-              <img src="/DTN-logo.png" alt="Deep Thought Networks" className="h-9 w-auto" />
+              <img src="/DTN-logo-1.png" alt="Deep Thought Networks" className="h-12 w-auto" />
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed">
               Innovative AI solutions for businesses ready to lead the next wave of intelligent automation.

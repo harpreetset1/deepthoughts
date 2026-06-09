@@ -21,7 +21,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center flex-shrink-0">
-            <img src="/DTN-logo.png" alt="Deep Thought Networks" className="h-9 w-auto" />
+            <img src="/DTN-logo-1.png" alt="Deep Thought Networks" className="h-10 w-auto" />
           </Link>
 
           {/* Desktop nav */}
