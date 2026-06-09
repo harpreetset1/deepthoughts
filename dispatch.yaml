@@ -1,0 +1,12 @@
+dispatch:
+  # Route mypersonalspace to its frontend service
+  - url: "mypersonalspace.deepthoughtnetworks.com/*"
+    service: mypersonalspace-frontend
+
+  # Route researchagent to its frontend service
+  - url: "researchagent.deepthoughtnetworks.com/*"
+    service: researchagent-frontend
+
+  # Route all default appspot traffic to the default service
+  - url: "aibot-fc4fc.wn.r.appspot.com/*"
+    service: default
