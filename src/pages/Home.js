@@ -1,6 +1,85 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
+/* ── Rotating words ───────────────────────────────────────────── */
+const WORDS = ['Autonomy', 'Intelligence', 'Innovation', 'Precision'];
+
+/* ── Marquee keywords ─────────────────────────────────────────── */
+const TICKER_ITEMS = [
+  'LLM Fine-Tuning', 'Agentic Workflows', 'RAG Pipelines', 'Vector Search',
+  'Computer Vision', 'NLP', 'Predictive Analytics', 'MLOps', 'GenAI',
+  'Embeddings', 'Multimodal AI', 'Prompt Engineering', 'AI Strategy',
+  'Cloud ML', 'Neural Networks',
+];
+
+/* ── Scroll reveal hook ───────────────────────────────────────── */
+function useScrollReveal(threshold = 0.15) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add('visible'); observer.unobserve(el); } },
+      { threshold }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+  return ref;
+}
+
+/* ── Count-up hook ────────────────────────────────────────────── */
+function useCountUp(target, duration = 1800, suffix = '') {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const started = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true;
+          const isFloat = String(target).includes('.');
+          const numericTarget = parseFloat(String(target).replace(/[^0-9.]/g, ''));
+          const start = performance.now();
+          const tick = (now) => {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = isFloat
+              ? (eased * numericTarget).toFixed(1)
+              : Math.round(eased * numericTarget);
+            setCount(current);
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [target, duration]);
+
+  return { ref, display: `${count}${suffix}` };
+}
+
+/* ── Stat item ────────────────────────────────────────────────── */
+function StatItem({ value, label }) {
+  const suffix = value.replace(/[0-9.]/g, '');
+  const { ref, display } = useCountUp(value, 1600, suffix);
+  return (
+    <div ref={ref} className="text-center">
+      <div className="text-3xl md:text-4xl font-bold text-indigo-600">{display}</div>
+      <div className="text-sm text-slate-500 mt-1">{label}</div>
+    </div>
+  );
+}
+
+/* ── Data ─────────────────────────────────────────────────────── */
 const products = [
   {
     name: 'Document Summarizer',
@@ -8,7 +87,7 @@ const products = [
     href: 'https://docsummarizer.deepthoughtnetworks.com',
     gradient: 'from-violet-600 to-indigo-600',
     features: ['AI-powered summarization', 'Chat with your document', 'Multi-format support', 'Private & secure'],
-    accentColor: 'text-violet-600',
+    accentColor: 'text-violet-500',
   },
   {
     name: 'Research Agent',
@@ -16,7 +95,7 @@ const products = [
     href: 'https://researchagent.deepthoughtnetworks.com',
     gradient: 'from-teal-500 to-emerald-600',
     features: ['Comprehensive reports', 'Customizable sections', 'AI-powered insights', 'Credit-based usage'],
-    accentColor: 'text-teal-600',
+    accentColor: 'text-teal-500',
   },
   {
     name: 'Personal Space',
@@ -24,7 +103,7 @@ const products = [
     href: 'https://mypersonalspace.deepthoughtnetworks.com',
     gradient: 'from-indigo-500 to-blue-600',
     features: ['HEIC/HEIF support', 'AI image tagging', 'Custom albums', 'Metadata preservation'],
-    accentColor: 'text-indigo-600',
+    accentColor: 'text-indigo-500',
   },
 ];
 
@@ -42,7 +121,7 @@ const services = [
   {
     title: 'Custom AI Solutions',
     description: 'Tailored AI products designed to address your unique business challenges.',
-    to: '/consulting',
+    to: '/custom-ai-development',
     icon: (
       <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
@@ -61,34 +140,88 @@ const services = [
   },
 ];
 
+/* ── Component ────────────────────────────────────────────────── */
 export default function Home() {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [wordVisible, setWordVisible] = useState(true);
+
+  // Rotating word with fade-out/in
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordVisible(false);
+      setTimeout(() => {
+        setWordIndex((i) => (i + 1) % WORDS.length);
+        setWordVisible(true);
+      }, 350);
+    }, 2400);
+    return () => clearInterval(interval);
+  }, []);
+
+  const servicesRef = useScrollReveal();
+  const productsRef = useScrollReveal();
+  const ctaRef = useScrollReveal();
+
   return (
     <div className="flex flex-col">
-      {/* Hero */}
-      <section className="relative bg-slate-900 py-28 px-4 overflow-hidden">
+
+      {/* ── Hero ──────────────────────────────────────────────── */}
+      <section className="relative bg-slate-900 py-32 px-4 overflow-hidden noise-overlay">
+
+        {/* Aurora blobs */}
         <div
-          className="absolute inset-0 opacity-[0.15]"
+          className="aurora-blob animate-aurora-1 w-[600px] h-[600px] top-[-100px] left-[-100px]"
+          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.55) 0%, transparent 70%)' }}
+        />
+        <div
+          className="aurora-blob animate-aurora-2 w-[500px] h-[500px] top-[60px] right-[-80px]"
+          style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.45) 0%, transparent 70%)' }}
+        />
+        <div
+          className="aurora-blob animate-aurora-3 w-[400px] h-[400px] bottom-[-60px] left-[35%]"
+          style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.35) 0%, transparent 70%)' }}
+        />
+
+        {/* Dot grid */}
+        <div
+          className="absolute inset-0 opacity-[0.12]"
           style={{ backgroundImage: 'radial-gradient(circle, #818cf8 1px, transparent 1px)', backgroundSize: '36px 36px' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/60 via-transparent to-violet-950/40" />
-        <div className="relative max-w-5xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm px-4 py-1.5 rounded-full mb-8">
+
+        <div className="relative z-10 max-w-5xl mx-auto text-center">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm px-4 py-1.5 rounded-full mb-8 animate-fade-up">
             <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-pulse" />
             Next-Generation AI Solutions
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-            Forging the Next<br />
-            <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-300 bg-clip-text text-transparent">
-              Frontier of AI
+
+          {/* Headline */}
+          <h1
+            className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight animate-fade-up"
+            style={{ animationDelay: '0.1s' }}
+          >
+            Built for AI&nbsp;
+            <span
+              className="inline-block gradient-text transition-opacity duration-300"
+              style={{ opacity: wordVisible ? 1 : 0 }}
+            >
+              {WORDS[wordIndex]}
             </span>
           </h1>
-          <p className="max-w-2xl mx-auto text-lg text-slate-300 mb-10 leading-relaxed">
+
+          <p
+            className="max-w-2xl mx-auto text-lg text-slate-300 mb-10 leading-relaxed animate-fade-up"
+            style={{ animationDelay: '0.2s' }}
+          >
             Where intelligent agents don't just respond—they anticipate, adapt, and act with purpose.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+
+          <div
+            className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up"
+            style={{ animationDelay: '0.3s' }}
+          >
             <Link
               to="/consulting"
-              className="px-8 py-3.5 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-500/20"
+              className="px-8 py-3.5 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-500/30 animate-pulse-glow"
             >
               Explore AI Consulting
             </Link>
@@ -100,36 +233,48 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </section>
 
-      {/* Stats bar */}
-      <section className="bg-white border-b border-slate-100">
-        <div className="max-w-5xl mx-auto px-4 py-8 grid grid-cols-3 gap-4 text-center">
-          {[
-            { value: '3+', label: 'AI Products' },
-            { value: '6', label: 'Consulting Areas' },
-            { value: '100%', label: 'AI-Powered' },
-          ].map(({ value, label }) => (
-            <div key={label}>
-              <div className="text-2xl md:text-3xl font-bold text-indigo-600">{value}</div>
-              <div className="text-sm text-slate-500 mt-0.5">{label}</div>
-            </div>
-          ))}
+        {/* Marquee ticker */}
+        <div
+          className="relative z-10 mt-16 overflow-hidden border-y border-white/10 py-3 animate-fade-up"
+          style={{ animationDelay: '0.45s' }}
+        >
+          <div className="flex animate-marquee whitespace-nowrap">
+            {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+              <span key={i} className="inline-flex items-center gap-3 text-xs font-medium text-indigo-300/70 uppercase tracking-widest mx-6">
+                <span className="w-1 h-1 bg-indigo-500/60 rounded-full" />
+                {item}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Services */}
-      <section className="py-20 bg-slate-50">
+      {/* ── Stats bar ─────────────────────────────────────────── */}
+      <section className="bg-white border-b border-slate-100">
+        <div className="max-w-5xl mx-auto px-4 py-10 grid grid-cols-3 gap-6 text-center divide-x divide-slate-100">
+          <StatItem value="3+" label="AI Products" />
+          <StatItem value="6" label="Consulting Areas" />
+          <StatItem value="100%" label="AI-Powered" />
+        </div>
+      </section>
+
+      {/* ── Services ──────────────────────────────────────────── */}
+      <section className="py-24 bg-slate-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-14 reveal visible">
+            <span className="text-xs font-semibold uppercase tracking-widest text-indigo-500 mb-3 block">What We Do</span>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Our AI Services</h2>
             <p className="max-w-2xl mx-auto text-slate-500">
               Cutting-edge AI solutions designed to transform your business and drive measurable results.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div ref={servicesRef} className="reveal grid grid-cols-1 sm:grid-cols-3 gap-6">
             {services.map(({ title, description, to, icon }) => (
-              <div key={title} className="bg-white rounded-xl border border-slate-200 p-7 hover:border-indigo-300 hover:shadow-md transition-all group">
+              <div
+                key={title}
+                className="shimmer-card bg-white rounded-xl border border-slate-200 p-7 hover:border-indigo-300 hover:shadow-lg transition-all group"
+              >
                 <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mb-5 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
                   {icon}
                 </div>
@@ -137,7 +282,7 @@ export default function Home() {
                 <p className="text-slate-500 text-sm leading-relaxed mb-5">{description}</p>
                 <Link to={to} className="inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-700">
                   Learn more
-                  <svg className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </Link>
@@ -147,21 +292,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Products */}
-      <section className="py-20 bg-white">
+      {/* ── Products ──────────────────────────────────────────── */}
+      <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-14 reveal visible">
+            <span className="text-xs font-semibold uppercase tracking-widest text-indigo-500 mb-3 block">Live & Ready</span>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Our Products</h2>
             <p className="max-w-2xl mx-auto text-slate-500">
               AI-powered tools built to enhance productivity and deliver real results.
             </p>
           </div>
-          <div className="space-y-8">
+          <div ref={productsRef} className="reveal space-y-8">
             {products.map(({ name, description, href, gradient, features, accentColor }, i) => (
-              <div key={name} className="rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+              <div
+                key={name}
+                className="shimmer-card rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl transition-shadow duration-300"
+              >
                 <div className={`flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                   <div className={`md:w-2/5 bg-gradient-to-br ${gradient} p-10 flex items-center justify-center`}>
                     <div className="text-center text-white">
+                      <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-float">
+                        <svg className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
                       <h3 className="text-2xl font-bold mb-3">{name}</h3>
                       <p className="text-white/80 mb-6 text-sm leading-relaxed">{description}</p>
                       <a
@@ -197,9 +351,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-indigo-600 to-violet-700">
-        <div className="max-w-3xl mx-auto px-4 text-center">
+      {/* ── CTA ───────────────────────────────────────────────── */}
+      <section className="relative py-24 bg-gradient-to-br from-indigo-600 to-violet-700 overflow-hidden noise-overlay">
+        <div
+          className="aurora-blob animate-aurora-2 w-[500px] h-[500px] top-[-100px] right-[-100px] opacity-40"
+          style={{ background: 'radial-gradient(circle, rgba(167,139,250,0.7) 0%, transparent 70%)' }}
+        />
+        <div ref={ctaRef} className="reveal relative z-10 max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-5">
             Ready to transform your business with AI?
           </h2>
@@ -208,7 +366,7 @@ export default function Home() {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center px-8 py-3.5 bg-white text-indigo-700 font-semibold rounded-lg hover:bg-indigo-50 transition-colors shadow-lg"
+            className="inline-flex items-center px-8 py-3.5 bg-white text-indigo-700 font-semibold rounded-lg hover:bg-indigo-50 transition-colors shadow-xl animate-pulse-glow"
           >
             Get in touch
           </Link>
