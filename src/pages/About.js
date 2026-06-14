@@ -10,7 +10,7 @@ const values = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
       </svg>
     ),
-    color: 'bg-indigo-50 text-indigo-600',
+    color: 'bg-blue-50 text-blue-600',
   },
   {
     title: 'Human-Centred',
@@ -30,7 +30,7 @@ const values = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     ),
-    color: 'bg-violet-50 text-violet-600',
+    color: 'bg-sky-50 text-sky-600',
   },
   {
     title: 'Results-Driven',
@@ -51,7 +51,7 @@ export default function About() {
       <section className="bg-slate-900 py-20 px-4 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.12]"
-          style={{ backgroundImage: 'radial-gradient(circle, #818cf8 1px, transparent 1px)', backgroundSize: '36px 36px' }}
+          style={{ backgroundImage: 'radial-gradient(circle, #60a5fa 1px, transparent 1px)', backgroundSize: '36px 36px' }}
         />
         <div className="relative max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-5">About Us</h1>
@@ -66,7 +66,7 @@ export default function About() {
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="text-sm font-semibold text-indigo-600 uppercase tracking-wider">Our Mission</span>
+              <span className="text-sm font-semibold text-blue-600 uppercase tracking-wider">Our Mission</span>
               <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mt-2 mb-5">
                 Bridging the gap between humans and intelligent machines
               </h2>
@@ -85,7 +85,7 @@ export default function About() {
                 { value: '∞', label: 'Possibilities' },
               ].map(({ value, label }) => (
                 <div key={label} className="bg-slate-50 rounded-xl p-6 text-center border border-slate-100">
-                  <div className="text-3xl font-bold text-indigo-600 mb-1">{value}</div>
+                  <div className="text-3xl font-bold text-blue-600 mb-1">{value}</div>
                   <div className="text-sm text-slate-500">{label}</div>
                 </div>
               ))}
@@ -103,7 +103,7 @@ export default function About() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map(({ title, description, icon, color }) => (
-              <div key={title} className="bg-white rounded-xl border border-slate-200 p-6 hover:border-indigo-300 hover:shadow-md transition-all">
+              <div key={title} className="bg-white rounded-xl border border-slate-200 p-6 hover:border-blue-300 hover:shadow-md transition-all">
                 <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${color} mb-4`}>
                   {icon}
                 </div>
@@ -116,15 +116,15 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4 bg-gradient-to-br from-indigo-600 to-violet-700">
+      <section className="py-20 px-4 bg-gradient-to-br from-blue-900 to-blue-600">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Want to work with us?</h2>
-          <p className="text-indigo-100 mb-8">
+          <p className="text-blue-100 mb-8">
             Whether you're looking to build something new or transform what you have, we'd love to talk.
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center px-8 py-3.5 bg-white text-indigo-700 font-semibold rounded-lg hover:bg-indigo-50 transition-colors shadow-lg"
+            className="inline-flex items-center px-8 py-3.5 bg-white text-blue-700 font-semibold rounded-lg hover:bg-blue-50 transition-colors shadow-lg"
           >
             Get in Touch
           </Link>

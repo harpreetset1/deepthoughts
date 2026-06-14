@@ -7,7 +7,7 @@ const coreServices = [
     title: 'AI Strategy Consulting',
     description: 'Expert guidance on integrating AI into your business operations. Our consultants work with you to identify opportunities, develop roadmaps, and implement AI solutions that drive measurable results.',
     points: ['AI readiness assessment', 'Custom AI strategy development', 'ROI analysis and implementation planning'],
-    color: 'from-indigo-600 to-violet-600',
+    color: 'from-blue-800 to-blue-600',
     to: '/consulting',
   },
   {
@@ -44,7 +44,7 @@ const specialisedServices = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
       </svg>
     ),
-    color: 'bg-violet-50 text-violet-600',
+    color: 'bg-sky-50 text-sky-600',
   },
   {
     badge: 'Analytics',
@@ -56,7 +56,7 @@ const specialisedServices = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
       </svg>
     ),
-    color: 'bg-indigo-50 text-indigo-600',
+    color: 'bg-blue-50 text-blue-600',
   },
 ];
 
@@ -67,7 +67,7 @@ export default function Services() {
       <section className="bg-slate-900 py-20 px-4 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.12]"
-          style={{ backgroundImage: 'radial-gradient(circle, #818cf8 1px, transparent 1px)', backgroundSize: '36px 36px' }}
+          style={{ backgroundImage: 'radial-gradient(circle, #60a5fa 1px, transparent 1px)', backgroundSize: '36px 36px' }}
         />
         <div className="relative max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Our AI Services</h1>
@@ -117,7 +117,7 @@ export default function Services() {
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-10 text-center">Specialised AI Services</h2>
           <div className="grid gap-6 grid-cols-1 sm:grid-cols-3">
             {specialisedServices.map(({ badge, title, description, points, icon, color }) => (
-              <div key={title} className="bg-white rounded-xl border border-slate-200 p-7 hover:border-indigo-300 hover:shadow-md transition-all">
+              <div key={title} className="bg-white rounded-xl border border-slate-200 p-7 hover:border-blue-300 hover:shadow-md transition-all">
                 <div className="flex items-start justify-between mb-5">
                   <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${color}`}>
                     {icon}
@@ -129,7 +129,7 @@ export default function Services() {
                 <ul className="space-y-1.5">
                   {points.map((p) => (
                     <li key={p} className="flex items-start gap-2 text-xs text-slate-500">
-                      <svg className="h-3.5 w-3.5 text-indigo-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-3.5 w-3.5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       {p}
@@ -143,13 +143,13 @@ export default function Services() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4 bg-gradient-to-br from-indigo-600 to-violet-700">
+      <section className="py-20 px-4 bg-gradient-to-br from-blue-900 to-blue-600">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Ready to Transform Your Business with AI?</h2>
-          <p className="text-indigo-100 mb-8">Schedule a consultation with our experts to discuss your specific needs.</p>
+          <p className="text-blue-100 mb-8">Schedule a consultation with our experts to discuss your specific needs.</p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-indigo-700 font-semibold rounded-lg hover:bg-indigo-50 transition-colors shadow-lg"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-blue-700 font-semibold rounded-lg hover:bg-blue-50 transition-colors shadow-lg"
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />

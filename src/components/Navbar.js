@@ -45,7 +45,7 @@ export default function Navbar() {
                 to={to}
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                   isActive(to)
-                    ? 'text-indigo-600 bg-indigo-50'
+                    ? 'text-blue-600 bg-blue-50'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
@@ -58,7 +58,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               to="/contact"
-              className="hidden md:inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-sm"
+              className="hidden md:inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
             >
               Get in Touch
             </Link>
@@ -92,7 +92,7 @@ export default function Navbar() {
                 onClick={() => setIsMenuOpen(false)}
                 className={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   isActive(to)
-                    ? 'text-indigo-600 bg-indigo-50'
+                    ? 'text-blue-600 bg-blue-50'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
@@ -103,7 +103,7 @@ export default function Navbar() {
               <Link
                 to="/contact"
                 onClick={() => setIsMenuOpen(false)}
-                className="block w-full text-center px-4 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors"
+                className="block w-full text-center px-4 py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors"
               >
                 Get in Touch
               </Link>

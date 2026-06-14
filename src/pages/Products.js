@@ -5,7 +5,7 @@ const products = [
     name: 'Document Summarizer',
     description: 'Instantly summarize lengthy documents using AI and chat with the content.',
     href: 'https://docsummarizer.deepthoughtnetworks.com',
-    gradient: 'from-violet-600 to-indigo-600',
+    gradient: 'from-blue-600 to-sky-500',
     badge: 'NLP',
     features: [
       'Advanced AI-powered summarization',
@@ -13,7 +13,7 @@ const products = [
       'Support for multiple document formats',
       'Secure and private document processing',
     ],
-    accentColor: 'text-violet-600',
+    accentColor: 'text-blue-500',
   },
   {
     name: 'Research Agent',
@@ -33,7 +33,7 @@ const products = [
     name: 'Personal Space',
     description: 'Secure cloud storage for your photos with AI-powered organization and HEIC support.',
     href: 'https://mypersonalspace.deepthoughtnetworks.com',
-    gradient: 'from-indigo-500 to-blue-600',
+    gradient: 'from-blue-800 to-sky-500',
     badge: 'Storage',
     features: [
       'Full support for HEIC/HEIF images from Apple devices',
@@ -41,7 +41,7 @@ const products = [
       'Metadata preservation and detailed viewing',
       'Custom albums and responsive gallery',
     ],
-    accentColor: 'text-indigo-600',
+    accentColor: 'text-sky-600',
   },
 ];
 
@@ -52,7 +52,7 @@ export default function Products() {
       <section className="bg-slate-900 py-20 px-4 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.12]"
-          style={{ backgroundImage: 'radial-gradient(circle, #818cf8 1px, transparent 1px)', backgroundSize: '36px 36px' }}
+          style={{ backgroundImage: 'radial-gradient(circle, #60a5fa 1px, transparent 1px)', backgroundSize: '36px 36px' }}
         />
         <div className="relative max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Our Products</h1>

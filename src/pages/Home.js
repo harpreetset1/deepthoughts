@@ -73,7 +73,7 @@ function StatItem({ value, label }) {
   const { ref, display } = useCountUp(value, 1600, suffix);
   return (
     <div ref={ref} className="text-center">
-      <div className="text-3xl md:text-4xl font-bold text-indigo-600">{display}</div>
+      <div className="text-3xl md:text-4xl font-bold text-blue-600">{display}</div>
       <div className="text-sm text-slate-500 mt-1">{label}</div>
     </div>
   );
@@ -85,9 +85,9 @@ const products = [
     name: 'Document Summarizer',
     description: 'Instantly summarize lengthy documents using AI and chat with the content.',
     href: 'https://docsummarizer.deepthoughtnetworks.com',
-    gradient: 'from-violet-600 to-indigo-600',
+    gradient: 'from-blue-600 to-sky-500',
     features: ['AI-powered summarization', 'Chat with your document', 'Multi-format support', 'Private & secure'],
-    accentColor: 'text-violet-500',
+    accentColor: 'text-blue-500',
   },
   {
     name: 'Research Agent',
@@ -101,9 +101,9 @@ const products = [
     name: 'Personal Space',
     description: 'Secure cloud storage for your photos with AI-powered organization and HEIC support.',
     href: 'https://mypersonalspace.deepthoughtnetworks.com',
-    gradient: 'from-indigo-500 to-blue-600',
+    gradient: 'from-blue-800 to-sky-500',
     features: ['HEIC/HEIF support', 'AI image tagging', 'Custom albums', 'Metadata preservation'],
-    accentColor: 'text-indigo-500',
+    accentColor: 'text-sky-500',
   },
 ];
 
@@ -145,7 +145,6 @@ export default function Home() {
   const [wordIndex, setWordIndex] = useState(0);
   const [wordVisible, setWordVisible] = useState(true);
 
-  // Rotating word with fade-out/in
   useEffect(() => {
     const interval = setInterval(() => {
       setWordVisible(false);
@@ -167,30 +166,30 @@ export default function Home() {
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section className="relative bg-slate-900 py-32 px-4 overflow-hidden noise-overlay">
 
-        {/* Aurora blobs */}
+        {/* Aurora blobs — blue/sky/cyan palette */}
         <div
           className="aurora-blob animate-aurora-1 w-[600px] h-[600px] top-[-100px] left-[-100px]"
-          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.55) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.5) 0%, transparent 70%)' }}
         />
         <div
           className="aurora-blob animate-aurora-2 w-[500px] h-[500px] top-[60px] right-[-80px]"
-          style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.45) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.4) 0%, transparent 70%)' }}
         />
         <div
           className="aurora-blob animate-aurora-3 w-[400px] h-[400px] bottom-[-60px] left-[35%]"
-          style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.35) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.3) 0%, transparent 70%)' }}
         />
 
         {/* Dot grid */}
         <div
           className="absolute inset-0 opacity-[0.12]"
-          style={{ backgroundImage: 'radial-gradient(circle, #818cf8 1px, transparent 1px)', backgroundSize: '36px 36px' }}
+          style={{ backgroundImage: 'radial-gradient(circle, #60a5fa 1px, transparent 1px)', backgroundSize: '36px 36px' }}
         />
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm px-4 py-1.5 rounded-full mb-8 animate-fade-up">
-            <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-pulse" />
+          <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-500/30 text-sky-300 text-sm px-4 py-1.5 rounded-full mb-8 animate-fade-up">
+            <span className="w-1.5 h-1.5 bg-sky-400 rounded-full animate-pulse" />
             Next-Generation AI Solutions
           </div>
 
@@ -221,7 +220,7 @@ export default function Home() {
           >
             <Link
               to="/consulting"
-              className="px-8 py-3.5 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-500/30 animate-pulse-glow"
+              className="px-8 py-3.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30 animate-pulse-glow"
             >
               Explore AI Consulting
             </Link>
@@ -241,8 +240,8 @@ export default function Home() {
         >
           <div className="flex animate-marquee whitespace-nowrap">
             {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-              <span key={i} className="inline-flex items-center gap-3 text-xs font-medium text-indigo-300/70 uppercase tracking-widest mx-6">
-                <span className="w-1 h-1 bg-indigo-500/60 rounded-full" />
+              <span key={i} className="inline-flex items-center gap-3 text-xs font-medium text-sky-300/70 uppercase tracking-widest mx-6">
+                <span className="w-1 h-1 bg-sky-500/60 rounded-full" />
                 {item}
               </span>
             ))}
@@ -263,7 +262,7 @@ export default function Home() {
       <section className="py-24 bg-slate-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 reveal visible">
-            <span className="text-xs font-semibold uppercase tracking-widest text-indigo-500 mb-3 block">What We Do</span>
+            <span className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-3 block">What We Do</span>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Our AI Services</h2>
             <p className="max-w-2xl mx-auto text-slate-500">
               Cutting-edge AI solutions designed to transform your business and drive measurable results.
@@ -273,14 +272,14 @@ export default function Home() {
             {services.map(({ title, description, to, icon }) => (
               <div
                 key={title}
-                className="shimmer-card bg-white rounded-xl border border-slate-200 p-7 hover:border-indigo-300 hover:shadow-lg transition-all group"
+                className="shimmer-card bg-white rounded-xl border border-slate-200 p-7 hover:border-blue-300 hover:shadow-lg transition-all group"
               >
-                <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mb-5 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                   {icon}
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">{title}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed mb-5">{description}</p>
-                <Link to={to} className="inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-700">
+                <Link to={to} className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700">
                   Learn more
                   <svg className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -296,7 +295,7 @@ export default function Home() {
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 reveal visible">
-            <span className="text-xs font-semibold uppercase tracking-widest text-indigo-500 mb-3 block">Live & Ready</span>
+            <span className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-3 block">Live & Ready</span>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Our Products</h2>
             <p className="max-w-2xl mx-auto text-slate-500">
               AI-powered tools built to enhance productivity and deliver real results.
@@ -352,21 +351,21 @@ export default function Home() {
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────── */}
-      <section className="relative py-24 bg-gradient-to-br from-indigo-600 to-violet-700 overflow-hidden noise-overlay">
+      <section className="relative py-24 bg-gradient-to-br from-blue-900 to-blue-600 overflow-hidden noise-overlay">
         <div
           className="aurora-blob animate-aurora-2 w-[500px] h-[500px] top-[-100px] right-[-100px] opacity-40"
-          style={{ background: 'radial-gradient(circle, rgba(167,139,250,0.7) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(56,189,248,0.5) 0%, transparent 70%)' }}
         />
         <div ref={ctaRef} className="reveal relative z-10 max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-5">
             Ready to transform your business with AI?
           </h2>
-          <p className="text-indigo-100 text-lg mb-8">
+          <p className="text-blue-100 text-lg mb-8">
             Contact us today to discuss how our AI solutions can help you achieve your goals.
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center px-8 py-3.5 bg-white text-indigo-700 font-semibold rounded-lg hover:bg-indigo-50 transition-colors shadow-xl animate-pulse-glow"
+            className="inline-flex items-center px-8 py-3.5 bg-white text-blue-700 font-semibold rounded-lg hover:bg-blue-50 transition-colors shadow-xl animate-pulse-glow"
           >
             Get in touch
           </Link>

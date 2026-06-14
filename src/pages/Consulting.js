@@ -11,7 +11,7 @@ const services = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     ),
-    color: 'bg-indigo-50 text-indigo-600',
+    color: 'bg-blue-50 text-blue-600',
   },
   {
     badge: 'Assessment',
@@ -33,7 +33,7 @@ const services = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
       </svg>
     ),
-    color: 'bg-violet-50 text-violet-600',
+    color: 'bg-sky-50 text-sky-600',
   },
   {
     badge: 'Integration',
@@ -55,7 +55,7 @@ const services = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
       </svg>
     ),
-    color: 'bg-indigo-50 text-indigo-600',
+    color: 'bg-blue-50 text-blue-600',
   },
   {
     badge: 'Enterprise',
@@ -77,7 +77,7 @@ export default function Consulting() {
       <section className="bg-slate-900 py-20 px-4 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.12]"
-          style={{ backgroundImage: 'radial-gradient(circle, #818cf8 1px, transparent 1px)', backgroundSize: '36px 36px' }}
+          style={{ backgroundImage: 'radial-gradient(circle, #60a5fa 1px, transparent 1px)', backgroundSize: '36px 36px' }}
         />
         <div className="relative max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-5">AI Consulting Services</h1>
@@ -86,7 +86,7 @@ export default function Consulting() {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-lg"
+            className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-lg"
           >
             Schedule a Consultation
           </Link>
@@ -105,7 +105,7 @@ export default function Consulting() {
 
           <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {services.map(({ badge, title, description, icon, color }) => (
-              <div key={title} className="bg-white rounded-xl border border-slate-200 p-7 hover:border-indigo-300 hover:shadow-md transition-all">
+              <div key={title} className="bg-white rounded-xl border border-slate-200 p-7 hover:border-blue-300 hover:shadow-md transition-all">
                 <div className="flex items-start justify-between mb-5">
                   <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${color}`}>
                     {icon}
@@ -121,15 +121,15 @@ export default function Consulting() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4 bg-gradient-to-br from-indigo-600 to-violet-700">
+      <section className="py-20 px-4 bg-gradient-to-br from-blue-900 to-blue-600">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Ready to start your AI journey?</h2>
-          <p className="text-indigo-100 mb-8">
+          <p className="text-blue-100 mb-8">
             Let's discuss how we can tailor our consulting services to your specific needs and goals.
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center px-8 py-3.5 bg-white text-indigo-700 font-semibold rounded-lg hover:bg-indigo-50 transition-colors shadow-lg"
+            className="inline-flex items-center px-8 py-3.5 bg-white text-blue-700 font-semibold rounded-lg hover:bg-blue-50 transition-colors shadow-lg"
           >
             Get in Touch
           </Link>
