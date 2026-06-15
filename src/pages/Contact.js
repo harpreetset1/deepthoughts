@@ -14,12 +14,16 @@ export default function Contact() {
   return (
     <div className="bg-white">
       {/* Header */}
-      <section className="bg-slate-900 py-20 px-4 relative overflow-hidden">
+      <section className="bg-slate-900 py-20 px-4 relative overflow-hidden noise-overlay">
+        <div className="aurora-blob animate-aurora-1 w-[500px] h-[500px] top-[-120px] left-[-80px]"
+          style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.5) 0%, transparent 70%)' }} />
+        <div className="aurora-blob animate-aurora-2 w-[400px] h-[400px] top-[20px] right-[-60px]"
+          style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.35) 0%, transparent 70%)' }} />
         <div
           className="absolute inset-0 opacity-[0.12]"
           style={{ backgroundImage: 'radial-gradient(circle, #60a5fa 1px, transparent 1px)', backgroundSize: '36px 36px' }}
         />
-        <div className="relative max-w-3xl mx-auto text-center">
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Contact Us</h1>
           <p className="text-slate-300 text-lg">
             Have a project in mind or want to learn more? We'd love to hear from you.
